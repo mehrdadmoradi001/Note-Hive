@@ -28,19 +28,23 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: EdgeInsets.all(25),
               child: Text(
-                inputText,
+                box.get(2) ?? 'empty',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
                 ),
               ),
             ),
             ElevatedButton(
               onPressed: () {
+                box.put(2,controller.text);
                 setState(() {
-                  inputText = controller.text;
                 });
               },
               child: Text('read from textField'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                textStyle: TextStyle(fontSize: 24),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
