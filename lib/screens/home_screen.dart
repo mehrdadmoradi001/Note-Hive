@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String inputText = '';
   var controller = TextEditingController();
+
+  var box = Hive.box('names');
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Padding(
               padding: EdgeInsets.all(25),
-              child: Text(inputText,style: TextStyle(fontWeight: FontWeight.bold,),),
+              child: Text(
+                inputText,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -32,6 +40,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               child: Text('read from textField'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                box.put(1, 'mehrdad');
+              },
+              child: Text('create'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                textStyle: TextStyle(fontSize: 24),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                var text = box.get(1);
+                print(text);
+              },
+              child: Text('read'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                textStyle: TextStyle(fontSize: 24),
+              ),
             ),
           ],
         ),
