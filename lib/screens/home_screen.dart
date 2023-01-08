@@ -63,6 +63,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 textStyle: TextStyle(fontSize: 24),
               ),
             ),
+            ElevatedButton(
+              onPressed: () {
+                box.put(1 , 'ZiZi');
+              },
+              child: Text('update'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                textStyle: TextStyle(fontSize: 24),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                box.delete(1);
+              },
+              child: Text('delete'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                textStyle: TextStyle(fontSize: 24),
+              ),
+            ),
           ],
         ),
       ),
