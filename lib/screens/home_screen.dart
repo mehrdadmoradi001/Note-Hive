@@ -14,6 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var box = Hive.box('names');
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
