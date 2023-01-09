@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../car.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var controller = TextEditingController();
 
   var box = Hive.box('names');
+  var carBox = Hive.box<Car>('carBox');
 
 
   @override
@@ -48,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                box.put(1, 'mehrdad');
+                //box.put(1, 'mehrdad');
+                carBox.put(1, Car(name: 'tesla', topSpeed: 300, price: 12.1212121));
               },
               child: Text('create'),
               style: ElevatedButton.styleFrom(
@@ -58,8 +61,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                var text = box.get(1);
-                print(text);
+                // var text = box.get(1);
+                // print(text);
+                if(carBox.get(1) == null){
+                  return;
+                }
+                print(carBox.get(1)!.name);
+                print(carBox.get(1)!.topSpeed);
+                print(carBox.get(1)!.price);
               },
               child: Text('read'),
               style: ElevatedButton.styleFrom(
@@ -69,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                box.put(1 , 'ZiZi');
+                // box.put(1 , 'ZiZi');
+                carBox.put(1, Car(name: 'teslaYY', topSpeed: 210, price: 10.5869));
               },
               child: Text('update'),
               style: ElevatedButton.styleFrom(
@@ -79,7 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                box.delete(1);
+                // box.delete(1);
+                carBox.delete(1);
               },
               child: Text('delete'),
               style: ElevatedButton.styleFrom(
